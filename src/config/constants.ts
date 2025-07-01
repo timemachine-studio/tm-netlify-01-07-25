@@ -14,7 +14,7 @@ export const PERSONA_LIMITS = {
   pro: parseInt(import.meta.env.VITE_PRO_PERSONA_LIMIT) || 5
 };
 
-// Client-side AI Personas (for UI display only - actual prompts are server-side)
+// Client-side AI Personas (for UI display only)
 export const AI_PERSONAS = {
   default: {
     name: 'TimeMachine',
