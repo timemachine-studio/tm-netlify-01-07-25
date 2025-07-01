@@ -61,12 +61,24 @@ export function WelcomeModal({ isOpen, onAccessGranted }: WelcomeModalProps) {
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
                 transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
                 className="fixed inset-0 flex items-center justify-center p-4 z-50"
+                style={{ 
+                  minHeight: '100vh',
+                  minHeight: '100dvh', // Dynamic viewport height for mobile
+                }}
               >
                 <div
-                  className="relative w-full max-w-md p-8 rounded-2xl
+                  className="relative w-full max-w-md mx-auto p-8 rounded-2xl
                     bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-3xl
                     border border-white/20 shadow-[0_8px_32px_rgba(139,92,246,0.2)]
-                    overflow-hidden"
+                    overflow-hidden
+                    min-h-fit max-h-[90vh] overflow-y-auto"
+                  style={{
+                    // Ensure proper centering on mobile
+                    position: 'relative',
+                    top: 'auto',
+                    left: 'auto',
+                    transform: 'none',
+                  }}
                 >
                   {/* Animated background elements */}
                   <div className="absolute inset-0 overflow-hidden">
@@ -106,16 +118,50 @@ export function WelcomeModal({ isOpen, onAccessGranted }: WelcomeModalProps) {
                         transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
                         className="inline-flex items-center justify-center w-16 h-16 rounded-full
                           bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-md
-                          border border-white/20 mb-4"
+                          border border-white/20 mb-6"
                       >
                         <Sparkles className="w-8 h-8 text-purple-400" />
                       </motion.div>
                       
-                      <Dialog.Title className={`text-2xl font-bold mb-2 ${theme.text}`}>
-                        Welcome to TimeMachine
+                      {/* Premium TimeMachine Logo - matching the HTML file */}
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                        className="mb-4"
+                      >
+                        <h1 
+                          className="text-4xl font-bold mb-4"
+                          style={{
+                            fontFamily: "'Montserrat', sans-serif",
+                            fontWeight: 700,
+                            background: 'linear-gradient(135deg, #a855f7, #ec4899, #06b6d4)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            backgroundClip: 'text',
+                            textShadow: '0 0 30px rgba(168, 85, 247, 0.5)',
+                            animation: 'shimmer 2s ease-in-out infinite alternate',
+                          }}
+                        >
+                          TimeMachine
+                        </h1>
+                        <style jsx>{`
+                          @keyframes shimmer {
+                            0% {
+                              filter: brightness(1);
+                            }
+                            100% {
+                              filter: brightness(1.2);
+                            }
+                          }
+                        `}</style>
+                      </motion.div>
+                      
+                      <Dialog.Title className={`text-xl font-semibold mb-2 ${theme.text}`}>
+                        Welcome to the Future
                       </Dialog.Title>
                       
-                      <p className={`text-sm opacity-80 ${theme.text} leading-relaxed`}>
+                      <p className={`text-sm opacity-80 ${theme.text} leading-relaxed px-2`}>
                         You're invited to experience the future of AI. Enter your beta access token to begin your journey.
                       </p>
                     </div>
@@ -161,36 +207,76 @@ export function WelcomeModal({ isOpen, onAccessGranted }: WelcomeModalProps) {
                         </AnimatePresence>
                       </div>
 
+                      {/* Premium Frosted Glass Button */}
                       <motion.button
-                        whileHover={{ scale: 1.02 }}
+                        whileHover={{ 
+                          scale: 1.02,
+                          boxShadow: '0 20px 40px rgba(168, 85, 247, 0.4), 0 0 60px rgba(168, 85, 247, 0.2)'
+                        }}
                         whileTap={{ scale: 0.98 }}
                         type="submit"
                         disabled={!accessToken.trim() || isValidating}
-                        className="w-full py-3 px-6 rounded-xl font-medium
-                          bg-gradient-to-r from-purple-600 to-pink-600
-                          hover:from-purple-500 hover:to-pink-500
-                          disabled:from-gray-600 disabled:to-gray-600
-                          text-white transition-all duration-200
+                        className="relative w-full py-4 px-6 rounded-xl font-semibold text-white
+                          overflow-hidden group
                           disabled:opacity-50 disabled:cursor-not-allowed
-                          shadow-lg hover:shadow-xl
+                          transition-all duration-300
                           flex items-center justify-center gap-2"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.08)',
+                          backdropFilter: 'blur(20px)',
+                          border: '1px solid rgba(255, 255, 255, 0.2)',
+                          boxShadow: '0 8px 32px rgba(168, 85, 247, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                        }}
                       >
-                        {isValidating ? (
-                          <>
-                            <motion.div
-                              animate={{ rotate: 360 }}
-                              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                            >
-                              <Clock className="w-5 h-5" />
-                            </motion.div>
-                            Validating...
-                          </>
-                        ) : (
-                          <>
-                            <Sparkles className="w-5 h-5" />
-                            Enter TimeMachine
-                          </>
-                        )}
+                        {/* Frosted glass overlay with gradient */}
+                        <div 
+                          className="absolute inset-0 opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                          style={{
+                            background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(236, 72, 153, 0.3), rgba(6, 182, 212, 0.3))',
+                            backdropFilter: 'blur(20px)',
+                          }}
+                        />
+                        
+                        {/* Glass shine effect */}
+                        <div 
+                          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                          style={{
+                            background: 'linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%)',
+                            transform: 'translateX(-100%)',
+                            animation: 'shine 1.5s ease-in-out infinite',
+                          }}
+                        />
+                        
+                        <style jsx>{`
+                          @keyframes shine {
+                            0% {
+                              transform: translateX(-100%);
+                            }
+                            100% {
+                              transform: translateX(100%);
+                            }
+                          }
+                        `}</style>
+                        
+                        {/* Button content */}
+                        <div className="relative z-10 flex items-center gap-2">
+                          {isValidating ? (
+                            <>
+                              <motion.div
+                                animate={{ rotate: 360 }}
+                                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                              >
+                                <Clock className="w-5 h-5" />
+                              </motion.div>
+                              Validating...
+                            </>
+                          ) : (
+                            <>
+                              <Sparkles className="w-5 h-5" />
+                              Enter TimeMachine
+                            </>
+                          )}
+                        </div>
                       </motion.button>
                     </form>
 
