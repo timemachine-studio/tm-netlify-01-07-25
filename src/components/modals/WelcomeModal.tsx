@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Key, Sparkles, Clock } from 'lucide-react';
+import { X, Key, Clock } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 import { BETA_ACCESS_TOKEN } from '../../config/constants';
 
@@ -63,7 +63,7 @@ export function WelcomeModal({ isOpen, onAccessGranted }: WelcomeModalProps) {
                 className="fixed inset-0 flex items-center justify-center p-4 z-50"
               >
                 <div
-                  className="relative w-full max-w-md p-8 rounded-2xl
+                  className="relative w-full max-w-md p-8 rounded-3xl
                     bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-3xl
                     border border-white/20 shadow-[0_8px_32px_rgba(139,92,246,0.2)]
                     overflow-hidden"
@@ -100,23 +100,14 @@ export function WelcomeModal({ isOpen, onAccessGranted }: WelcomeModalProps) {
                   <div className="relative z-10">
                     {/* Header */}
                     <div className="text-center mb-8">
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                        className="inline-flex items-center justify-center w-16 h-16 rounded-full
-                          bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-md
-                          border border-white/20 mb-4"
-                      >
-                        <Sparkles className="w-8 h-8 text-purple-400" />
-                      </motion.div>
-                      
-                      <Dialog.Title className={`text-2xl font-bold mb-2 ${theme.text}`}>
-                        Welcome to TimeMachine
+                      <Dialog.Title className={`text-3xl font-extrabold ${theme.text}
+                        bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400
+                        drop-shadow-[0_2px_4px_rgba(139,92,246,0.4)] tracking-tight`}>
+                        TimeMachine
                       </Dialog.Title>
                       
-                      <p className={`text-sm opacity-80 ${theme.text} leading-relaxed`}>
-                        You're invited to experience the future of AI. Enter your beta access token to begin your journey.
+                      <p className={`text-sm opacity-80 ${theme.text} leading-relaxed mt-2`}>
+                        Welcome to the Future
                       </p>
                     </div>
 
@@ -167,9 +158,10 @@ export function WelcomeModal({ isOpen, onAccessGranted }: WelcomeModalProps) {
                         type="submit"
                         disabled={!accessToken.trim() || isValidating}
                         className="w-full py-3 px-6 rounded-xl font-medium
-                          bg-gradient-to-r from-purple-600 to-pink-600
-                          hover:from-purple-500 hover:to-pink-500
-                          disabled:from-gray-600 disabled:to-gray-600
+                          bg-white/10 backdrop-blur-md
+                          border border-white/20
+                          hover:bg-white/20
+                          disabled:bg-gray-600/10 disabled:border-gray-600/20
                           text-white transition-all duration-200
                           disabled:opacity-50 disabled:cursor-not-allowed
                           shadow-lg hover:shadow-xl
