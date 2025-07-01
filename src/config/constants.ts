@@ -1,7 +1,7 @@
 // App Configuration
 export const MAINTENANCE_MODE = import.meta.env.VITE_MAINTENANCE_MODE === 'true';
 export const ACCESS_TOKEN_REQUIRED = import.meta.env.VITE_ACCESS_TOKEN_REQUIRED === 'true';
-export const BETA_ACCESS_TOKEN = import.meta.env.VITE_BETA_ACCESS_TOKEN || 'TIMEMACHINE_BETA_2025';
+export const BETA_ACCESS_TOKEN = import.meta.env.VITE_BETA_ACCESS_TOKEN || 'WE_WILL_LET_YOU_COOK';
 
 // API Keys
 export const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
@@ -9,9 +9,9 @@ export const CEREBRAS_API_KEY = import.meta.env.VITE_CEREBRAS_API_KEY;
 
 // Rate Limits (for display purposes only - actual limits enforced server-side)
 export const PERSONA_LIMITS = {
-  default: parseInt(import.meta.env.VITE_DEFAULT_PERSONA_LIMIT) || 10,
-  girlie: parseInt(import.meta.env.VITE_GIRLIE_PERSONA_LIMIT) || 10,
-  pro: parseInt(import.meta.env.VITE_PRO_PERSONA_LIMIT) || 3
+  default: parseInt(import.meta.env.VITE_DEFAULT_PERSONA_LIMIT) || 30,
+  girlie: parseInt(import.meta.env.VITE_GIRLIE_PERSONA_LIMIT) || 25,
+  pro: parseInt(import.meta.env.VITE_PRO_PERSONA_LIMIT) || 5
 };
 
 // Client-side AI Personas (for UI display only - actual prompts are server-side)
