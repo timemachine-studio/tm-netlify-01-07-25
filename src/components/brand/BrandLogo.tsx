@@ -22,9 +22,9 @@ const personaColors = {
 } as const;
 
 const personaDescriptions = {
-  default: 'Fastest AI in the world for everyday use',
-  girlie: 'The AI that gets the vibe check',
-  pro: 'Our most technologically advanced AI with reasoning capabilities'
+  default: 'Fastest intelligence in the world for everyday use',
+  girlie: 'The intelligence that gets the vibe check',
+  pro: 'Our most technologically advanced intelligence with human-like emotions and thinking capabilities'
 } as const;
 
 const personaGlowColors = {
